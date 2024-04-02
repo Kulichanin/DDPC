@@ -26,6 +26,8 @@ def send_command_file(path_file):
 
 def send_command_one_device(ip, login, passsword, command):
     future_list = list
+    click.echo(
+        f"Device IP: {ip}. Login: {login}. List Command {command}")
     result = sending_command.send_command(ip, login, passsword, command)
     future_list.append(result)
     for result in future_list:
