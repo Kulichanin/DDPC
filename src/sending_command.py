@@ -1,22 +1,25 @@
 import logging
 
-from paramiko import SSHClient
+from paramiko import SSHClient, AutoAddPolicy, SSHException
 from time import sleep
 from socket import timeout
 
 MAX_BYTES = 60000
 
 logging.basicConfig(
-    format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+    format='%(name)s - %(levelname)s - %(message)s', level=logging.ERROR)
 logger = logging.getLogger("builder")
 
 
 def send_command(ip: str, username: str, password: str, commands: list) -> dict:
     client = SSHClient()
-    client.connect(hostname=ip, username=username,
-                   password=password, look_for_keys=False, allow_agent=False)
-
-    logging.info(f"Connection in {ip}")
+    client.set_missing_host_key_policy(AutoAddPolicy())
+    try:
+        client.connect(hostname=ip, username=username,
+                       password=password, look_for_keys=False,)
+    except SSHException as error:
+        logger.error(error)
+        return
 
     result = {}
 

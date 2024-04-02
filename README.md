@@ -8,18 +8,27 @@
 
 ```json
 {
-"номер устройства": {
-                    "ip": "адрес",
-                    "login": "логин",
-                    "pass": "пароль"
-                    } ,
-"номер устройства": {
-                    "ip": "адрес",
-                    "login": "логин",
-                    "pass": "пароль"
-                    } , 
+    "device_number1": {
+        "ip": "адрес",
+        "login": "логин",
+        "pass": "пароль",
+        "command": [
+            "команда1",
+            "команда2"
+        ]
+    },
+    "device_number2": {
+        "ip": "адрес",
+        "login": "логин",
+        "pass": "пароль",
+        "command": [
+            "команда3"
+        ]
+    }
 }
 ```
+
+Приведен пример в example.json
 
 ## Постановка задачи
 
@@ -36,11 +45,3 @@ dd if=/dev/disks/mpx.vmhba0:C0:T0:L0 of=/vmfs/volumes/datastore1/hdd.mbr count=1
 #первый сектор EFI
 dd if=/dev/disks/mpx.vmhba0:C0:T0:L0:1 of=/vmfs/volumes/datastore1/efi.boot count=1 bs=512
 ```
-
-Затем забирает вывод команд
-
-Переименовыват по номеру
-
-/dev/disk/by-id/
-
-dd if=/dev/disk/by-id/dm-uuid-LVM-vhNrqTchbdgoTmNNdNR9PJNJTgZsatOy3e8yewCRr4Rt2gXsiLosvF2RPjpqWqA6 of=./efi.boot count=1 bs=512
