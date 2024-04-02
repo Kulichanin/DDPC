@@ -29,3 +29,15 @@
 ```
 
 Приведен пример в example.json
+
+Основная информация по командам:
+
+```bash
+Usage: main.py [OPTIONS]
+
+Options:
+  -f, --name_file TEXT            Path to json file.
+  -c, --command <TEXT TEXT TEXT TEXT>...
+                                  Send one command to one device
+  --help                          Show this message and exit.
+```
